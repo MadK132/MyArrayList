@@ -25,7 +25,8 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void set(int index, T item) {
-
+        checkIndex(index);
+        arr[index] = item;
     }
 
     @Override
@@ -44,27 +45,38 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void addFirst(T item) {
-
+        if (size >= arr.length) {
+            increaseBuffer();
+        }
+        for (int i = size; i > 0; i--) {   //Shift all elements to the right
+            arr[i] = arr[i - 1];
+        }
+        arr[0] = item;
+        size++;
     }
 
     @Override
     public void addLast(T item) {
-
+        if(size>=arr.length){
+            increaseBuffer();
+        }
+        arr[size++] = item;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        checkIndex(index);
+        return arr[index];
     }
 
     @Override
     public T getFirst() {
-        return null;
+        return arr[0];
     }
 
     @Override
     public T getLast() {
-        return null;
+        return arr[arr.length-1];
     }
 
     @Override
@@ -78,37 +90,62 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-
+        for(int i = size; i>0; i--){
+            arr[i-1] = arr[i];
+        }
     }
 
     @Override
     public void removeLast() {
-
+        size--;
     }
 
     @Override
     public void sort() {
-
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (((Comparable<T>) arr[j]).compareTo(arr[j + 1]) > 0) {
+                    T temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        for(int i = 0 ; i<size; i++){
+            if(arr[i] == object){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        int lastind = -1;
+        for(int i = 0; i<size; i++){
+            if(arr[i]==object){
+                lastind = i;
+            }
+        }
+        return lastind;
     }
 
     @Override
     public boolean exists(Object object) {
-        return false;
+        return indexOf(object) != -1;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] newArray = new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = arr[i];
+        }
+        return newArray;
     }
 
     @Override
