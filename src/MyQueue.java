@@ -4,9 +4,11 @@ public class MyQueue<T> {
     public MyQueue(){
         size = 0;
     }
+    //to add element in last position
     public void enqueue(T item){
         arr[size++] = item;
     }
+    //to remove the first element
     public void dequeue(){
         for(int i = size; i>0; i--){
             arr[i-1] = arr[i];

@@ -6,7 +6,7 @@ public class MyArrayList<T> implements MyList<T> {
     public MyArrayList(){
         size = 0;
     }
-
+//Method to add element in the end of the list(increasebuffer() is method to control a size of the list)
     @Override
     public void add(T item) {
         if(size>=arr.length){
@@ -22,13 +22,13 @@ public class MyArrayList<T> implements MyList<T> {
         }
         arr = newArr;
     }
-
+//We set element instead of other element by method set()
     @Override
     public void set(int index, T item) {
         checkIndex(index);
         arr[index] = item;
     }
-
+//Add() method is using add() method but by it index
     @Override
     public void add(int index, T item) {
         checkIndex(index);
@@ -37,12 +37,13 @@ public class MyArrayList<T> implements MyList<T> {
         }
         arr[index] = item;
     }
+    //Checkindex() to check if index is correct
     private void checkIndex(int index){
         if(index < 0 || index >= size){
             throw new ArrayIndexOutOfBoundsException("index not correct");
         }
     }
-
+//addFirst() to add element in the 0 position
     @Override
     public void addFirst(T item) {
         if (size >= arr.length) {
@@ -54,7 +55,7 @@ public class MyArrayList<T> implements MyList<T> {
         arr[0] = item;
         size++;
     }
-
+//Addlast() unnecessary here
     @Override
     public void addLast(T item) {
         if(size>=arr.length){
@@ -62,7 +63,7 @@ public class MyArrayList<T> implements MyList<T> {
         }
         arr[size++] = item;
     }
-
+//get() method to get element by index, getfirst() get first element, and the third get last element
     @Override
     public T get(int index) {
         checkIndex(index);
@@ -78,7 +79,7 @@ public class MyArrayList<T> implements MyList<T> {
     public T getLast() {
         return arr[arr.length-1];
     }
-
+//remove to remove element by index, removefirst() to remove the first element, and the third to remove last element
     @Override
     public void remove(int index) {
         checkIndex(index);
@@ -100,7 +101,7 @@ public class MyArrayList<T> implements MyList<T> {
     public void removeLast() {
         size--;
     }
-
+//sort(0 to sort elements in array by bubble sort
     @Override
     public void sort() {
         for (int i = 0; i < size - 1; i++) {
@@ -113,7 +114,7 @@ public class MyArrayList<T> implements MyList<T> {
             }
         }
     }
-
+//indexof() return the first occurence of element, lastindexof() return last occurence of element
     @Override
     public int indexOf(Object object) {
         for(int i = 0 ; i<size; i++){
@@ -134,12 +135,12 @@ public class MyArrayList<T> implements MyList<T> {
         }
         return lastind;
     }
-
+//exist() checking of there something exists
     @Override
     public boolean exists(Object object) {
         return indexOf(object) != -1;
     }
-
+//toarray() copy array
     @Override
     public Object[] toArray() {
         Object[] newArray = new Object[size];
@@ -148,7 +149,7 @@ public class MyArrayList<T> implements MyList<T> {
         }
         return newArray;
     }
-
+//clear() to clear full array
     @Override
     public void clear() {
         arr = (T[]) new Object[5];

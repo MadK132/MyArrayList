@@ -4,12 +4,15 @@ public class MyStack<T> {
     public MyStack(){
         size = 0;
     }
+    //push() to push element in the end
     public void Push(T item){
         arr[size++] = item;
     }
+    //pop() to remove the last element
     public void Pop(int index){
         size--;
     }
+    //peek() to return the last element
     public T Peek(){
         return arr[size--];
     }
