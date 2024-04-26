@@ -93,6 +93,7 @@ public class MyArrayList<T> implements MyList<T> {
         for(int i = size; i>0; i--){
             arr[i-1] = arr[i];
         }
+        size--;
     }
 
     @Override
